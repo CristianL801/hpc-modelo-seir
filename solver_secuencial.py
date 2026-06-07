@@ -1,53 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-def modelo_seir(t, Y, beta, sigma, gamma, N):
-    """
-    Calcula las derivadas parciales del modelo epidemiológico SEIR en redes corporativas.
-    
-    Args:
-        t (float): Tiempo actual de la simulación.
-        Y (np.ndarray): Vector de estado actual [S, E, I, P].
-        beta (float): Tasa de propagación del malware.
-        sigma (float): Tasa de latencia de la vulnerabilidad.
-        gamma (float): Velocidad de distribución de los parches.
-        N (int): Población total de la red (nodos).
-        
-    Returns:
-        np.ndarray: Vector con las tasas de cambio [dS/dt, dE/dt, dI/dt, dP/dt].
-    """
-    S, E, I, P = Y
-    
-    # Ecuaciones diferenciales del modelo acoplado
-    dSdt = -beta * (S * I) / N
-    dEdt = (beta * (S * I) / N) - (sigma * E)
-    dIdt = (sigma * E) - (gamma * I)
-    dPdt = gamma * I
-    
-    return np.array([dSdt, dEdt, dIdt, dPdt])
-
-def rk4_step(f, t, Y, h, *args):
-    """
-    Avanza un paso discreto en el tiempo utilizando el método de Runge-Kutta de 4to orden (RK4).
-    Abstraído de manera independiente según los requerimientos de modularidad.
-    
-    Args:
-        f (callable): Función matemática del sistema de ecuaciones (modelo_seir).
-        t (float): Tiempo actual.
-        Y (np.ndarray): Vector de estado en el tiempo t.
-        h (float): Tamaño del paso de tiempo.
-        *args: Argumentos adicionales requeridos por la función f.
-        
-    Returns:
-        np.ndarray: Vector de estado actualizado en el tiempo t + h.
-    """
-    k1 = f(t, Y, *args)
-    k2 = f(t + h/2, Y + (h/2)*k1, *args)
-    k3 = f(t + h/2, Y + (h/2)*k2, *args)
-    k4 = f(t + h, Y + h*k3, *args)
-    
-    return Y + (h/6) * (k1 + 2*k2 + 2*k3 + k4)
-
+from solver_numerico import modelo_seir, rk4_step 
 
 
 def simular_baseline():
