@@ -117,7 +117,7 @@ def ejecutar_montecarlo():
         plt.figure(figsize=(10, 6))
         plt.plot(nucleos, speedup_ideal, 'g--', label='Speedup Ideal (Lineal - Colas de Trabajo)', linewidth=2)
         plt.plot(nucleos, speedup_teorico, 'b-', label='Speedup Teórico (Amdahl - ipyparallel)', linewidth=2)
-        plt.plot(6, speedup_real_medido, 'ro', markersize=10, label=f'Tu Cómputo Actual ({len(cliente.ids)} Cores)')
+        plt.plot(6, speedup_real_medido, 'ro', markersize=10, label=f'Cómputo Actual ({len(cliente.ids)} Cores)')
         
         plt.title('Análisis de Escalabilidad: Ley de Amdahl en Fase 3', fontsize=12, fontweight='bold')
         plt.xlabel('Número de Procesadores / Núcleos', fontsize=10)
