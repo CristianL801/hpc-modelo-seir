@@ -4,7 +4,6 @@ import numpy as np
 def modelo_seir(t, Y, beta, sigma, gamma, N):
     """
     Calcula las derivadas parciales del modelo epidemiológico SEIR en redes corporativas.
-    ... (mantienes el docstring y código exacto de Cristian) ...
     """
     S, E, I, P = Y
     dSdt = -beta * (S * I) / N
@@ -16,7 +15,6 @@ def modelo_seir(t, Y, beta, sigma, gamma, N):
 def rk4_step(f, t, Y, h, *args):
     """
     Avanza un paso discreto en el tiempo utilizando el método de Runge-Kutta de 4to orden (RK4).
-    ... (mantienes el docstring y código exacto de Cristian) ...
     """
     k1 = f(t, Y, *args)
     k2 = f(t + h/2, Y + (h/2)*k1, *args)

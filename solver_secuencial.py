@@ -32,7 +32,7 @@ def simular_baseline():
     for i, t in enumerate(tiempos):
         historial[i] = Y_actual
         
-        # Validación crítica para rúbrica: Conservación rigurosa de la población total
+        # Conservación rigurosa de la población total
         if not np.isclose(np.sum(Y_actual), N):
             print(f"Advertencia: Inestabilidad numérica detectada en t={t}")
             break
@@ -40,7 +40,6 @@ def simular_baseline():
         Y_actual = rk4_step(modelo_seir, t, Y_actual, h, beta, sigma, gamma, N)
         
     print("Simulación secuencial finalizada con éxito. Población total conservada.")
-    # El siguiente paso lógico aquí será usar matplotlib para visualizar 'historial'
     # Generar la gráfica del modelo epidemiológico
     plt.figure(figsize=(10, 6))
     plt.plot(tiempos, historial[:, 0], label='Susceptibles (S)', color='blue', linewidth=2)
